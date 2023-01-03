@@ -1,0 +1,38 @@
+
+Thank you for checking out 3D Leap Land.
+These assets are free for personal and commercial use, no attribution required (Creative Commons Zero, CC0).
+
+
+
+Colors:
+-------
+Easily change the colors for all assets by modifying "palette.png" located in the "tex" folder.
+
+
+
+Materials:
+----------
+For the sake of simplicity, all assets were developed using only 2 materials, metallic and non-metallic. Some models might contain both metallic and non-metallic elements. In such cases, the metallic material will always be the first slot and non-metallic second. Multiple materials only supported in the FBX versions.
+
+
+
+Animations:
+-----------
+Animations are done through blend-shapes, only supported in the FBX versions.
+These are the models with blend-shapes:
+- Water2 & Water4
+- Crumbling Rock Platform
+- Spring
+- Flag
+- Treasure Chest
+- Rope
+- Slime
+- Bee
+- Wooden Spikes
+- Cannon
+- Detonater
+
+
+
+Follow on Twitter for updates:
+http://twitter.com/AEssssam

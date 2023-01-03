@@ -20,9 +20,15 @@ public class Move : MonoBehaviour
     {
         float speed = Input.GetKey(runKey) ? runSpeed : walkSpeed;
 
+        Vector3 newSpeed = Vector3.zero;
+
         float inputX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         float inputZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
         rb.transform.Translate(inputX, 0, inputZ);
     }
+
+
+    //You only start decelerating once you let go
+
 }
