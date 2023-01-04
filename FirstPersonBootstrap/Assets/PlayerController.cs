@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,11 +33,22 @@ public class PlayerController : MonoBehaviour
     string hookState = "inactive";
 
     public GameObject hook, line;
+    bool hooked;
     Transform currentHook;
 
     LineRenderer lineRenderer;
     public Transform hookSpawnPos;
     int everythingButPlayer;
+
+
+
+    [Space(15)]
+    //0 = launch
+    //1 = hit
+    //2 = rope
+    public List<AudioClip> clips = new List<AudioClip>();
+    AudioSource a;
+
 
 
     
@@ -48,6 +60,8 @@ public class PlayerController : MonoBehaviour
 
         //Get collider
         col = GetComponent<Collider>();
+
+        a = GetComponent<AudioSource>();
         
         
         //Make a layermask of everything but the player layer
@@ -59,7 +73,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-
+        if(Input.GetKey(KeyCode.R)) SceneManager.LoadScene(0);
 
         //Hook stuff
         {
@@ -67,7 +81,7 @@ public class PlayerController : MonoBehaviour
             if(Input.GetButtonDown("Fire1"))
             {
 
-
+                a.PlayOneShot(clips[0]);
 
                 //Check if raycast hit anything, using layermask
                 bool hit = Physics.Raycast(viewCamera.transform.position, viewCamera.transform.forward, out hookHit, Mathf.Infinity, everythingButPlayer);
@@ -129,48 +143,119 @@ public class PlayerController : MonoBehaviour
         hookState = "inactive";
         Destroy(GameObject.FindGameObjectWithTag("Hook"));
         Destroy(GameObject.FindGameObjectWithTag("Line"));
+        a.Stop();
     }
 
     RaycastHit throughHit;
-    public Vector3 hookDir;
+    Vector3 hookDir;
+    float freeFallVel;
     void FixedUpdate()
     {
+
+        //Jump Stuff
+        {
+            if(Grounded()) canJump = true;
+            //If player pressed jump and is grounded
+            if (canJump && jumpButton)
+            {
+                DeleteHook();
+
+                canJump = false;
+                jumpButton = false;
+
+                freeFallVel = rb.velocity.magnitude;
+
+                //Set y velocity to 0
+                if(rb.velocity.y <= 1)
+                {
+                    Vector3 spd = rb.velocity;
+                    spd.y = 0;
+                    rb.velocity = spd;
+                    rb.AddForce(rb.transform.up * jumpStrength, ForceMode.Impulse);
+                }
+
+            }
+
+            if(rb.velocity.y < 0) rb.velocity -= Vector3.up * downGravity;
+
+        }
+
         //Ground Movement
         //If pressing WASD or grounded
         if(Mathf.Abs(Input.GetAxis("Horizontal")) > 0 || Mathf.Abs(Input.GetAxis("Vertical")) > 0 || Grounded())
         {
-
+            if(!hooked)
             {
-                //Define if the player should run or walk
-                float speed = Input.GetKey(runKey) ? runSpeed : walkSpeed;
 
-                //Get the relative forward direction of the camera, ignoring y
-                Vector3 forward = viewCamera.transform.forward.normalized;
+                {
+                    //Define if the player should run or walk
+                    float speed = Input.GetKey(runKey) ? runSpeed : walkSpeed;
 
-                //Get the relative right direction of the camera, ignoring y
-                Vector3 right = viewCamera.transform.right.normalized;
+                    //Get the relative forward direction of the camera, ignoring y
+                    Vector3 forward = viewCamera.transform.forward.normalized;
 
-                //Create a temporary vector to store the new velocity
-                //This is done because we can't directly modify the x/y/z values of rb.velocity
-                Vector3 newVelocity;
+                    //Get the relative right direction of the camera, ignoring y
+                    Vector3 right = viewCamera.transform.right.normalized;
 
-                //Get the speed the player should move relative to where they're looking
-                Vector3 relativeX = Input.GetAxis("Horizontal") * speed * right;
-                Vector3 relativeZ = Input.GetAxis("Vertical") * speed * forward;
+                    //Create a temporary vector to store the new velocity
+                    //This is done because we can't directly modify the x/y/z values of rb.velocity
+                    Vector3 newVelocity;
 
-                //Add the relative x and z values
-                newVelocity = relativeX + relativeZ;
+                    //Get the speed the player should move relative to where they're looking
+                    Vector3 relativeX = Input.GetAxis("Horizontal") * speed * right;
+                    Vector3 relativeZ = Input.GetAxis("Vertical") * speed * forward;
 
-                //Set the y to the current y velocity of the rigidbody
-                //If we don't do this the player will just float in mid air
-                newVelocity.y = rb.velocity.y;
+                    //Add the relative x and z values
+                    newVelocity = relativeX + relativeZ;
 
-                //Apply the new velocity
-                rb.velocity = newVelocity;
+                    //Set the y to the current y velocity of the rigidbody
+                    //If we don't do this the player will just float in mid air
+                    newVelocity.y = rb.velocity.y;
 
+                    //Apply the new velocity
+                    rb.velocity = newVelocity;
+
+                }
             }
         }
-       
+
+
+        //Hook freefall
+        if(hooked && hookState == "inactive")
+        {
+            if(freeFallVel < 15f) hooked = false;
+            
+            Vector3 velocityNoY = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+            //Multiply by direction
+            Vector3 newSpeed = viewCamera.transform.forward.normalized * freeFallVel;
+
+            //Ignore y changes
+            newSpeed.y = rb.velocity.y;
+
+            //Apply new speed
+            rb.velocity = newSpeed;
+
+
+            //Define if the player should run or walk
+            float speed = Input.GetKey(runKey) ? runSpeed : walkSpeed;
+
+            //Get the relative right direction of the camera
+            Vector3 right = viewCamera.transform.right.normalized;
+
+            //Get the speed the player should move relative to where they're looking
+            Vector3 forceToAdd = Input.GetAxis("Horizontal") * speed * right;
+
+            //Ignore y, without player shoots up
+            forceToAdd.y = 0;
+            
+
+            rb.AddForce(forceToAdd, ForceMode.Impulse);
+
+
+        }
+
+
         //Hook stuff
         {
             //If the hook is moving
@@ -208,7 +293,8 @@ public class PlayerController : MonoBehaviour
                         //change state to hooked
                         hookState = "hooked";
 
-
+                        a.PlayOneShot(clips[1]);
+                        a.PlayOneShot(clips[2]);
                     
                 }
 
@@ -220,6 +306,7 @@ public class PlayerController : MonoBehaviour
             else if(hookState == "hooked")
             {
                 canJump = true;
+                hooked = true;
 
                 //Change line points
                 lineRenderer.SetPosition(0, hookSpawnPos.position);
@@ -228,44 +315,30 @@ public class PlayerController : MonoBehaviour
                 //Get the direction between the player and the hook
                 hookDir = currentHook.position - transform.position;
 
-
-                //Move the player in the direction of the hook, using rigidbody velocity
-                rb.velocity = Vector3.zero;
-                rb.AddForce(hookDir.normalized * hookPull, ForceMode.Impulse);
-
-                //If the player jumps
-                if(jumpButton)
-                {
-                    DeleteHook();
+                if(rb.velocity.magnitude <= 1f) 
+                {   
+                    StartCoroutine(waitAFrameThenStop());
                 }
 
-        
+                //Move the player in the direction of the hook, using rigidbody velocity
+                rb.velocity = hookDir.normalized * hookPull;
+
+                IEnumerator waitAFrameThenStop()
+                {
+                    yield return new WaitForFixedUpdate();
+
+                    if(rb.velocity.magnitude <= 1f) 
+                    {
+                        a.Stop();
+                    }
+                }
+
 
             }
 
         }
         
-        //Jump Stuff
-        {
-            if(Grounded()) canJump = true;
-            //If player pressed jump and is grounded
-            if (canJump && jumpButton)
-            {
 
-                canJump = false;
-                jumpButton = false;
-
-                //Set y velocity to 0
-                Vector3 spd = rb.velocity;
-                spd.y = 0;
-                rb.velocity = spd;
-
-                rb.AddForce(rb.transform.up * jumpStrength, ForceMode.Impulse);
-            }
-
-            if(rb.velocity.y < 0) rb.velocity -= Vector3.up * downGravity;
-
-        }
 
 
 
@@ -280,9 +353,10 @@ public class PlayerController : MonoBehaviour
         bool grounded = false;
 
         //Get the bit mask of the ground layer
-        //This is straight up black magic, only wizards understand how this works
         int groundMask = 1 << 6;
 
+
+       
 
         //Get the position of the bottom of the player's hitbox
         Vector3 origin = new Vector3(col.bounds.center.x, col.bounds.min.y + .48f, col.bounds.center.z);
@@ -298,7 +372,7 @@ public class PlayerController : MonoBehaviour
             if(hits[i].gameObject.layer == 6) grounded = true;
         }
 
-
+        if(grounded) hooked = false;
         return grounded;
     }
 }

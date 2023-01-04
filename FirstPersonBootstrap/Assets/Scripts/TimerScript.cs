@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class TimerScript : MonoBehaviour
@@ -12,6 +13,8 @@ public class TimerScript : MonoBehaviour
     public PlatformTriggerScript endPlatform;
 
     public TextMeshProUGUI timerText;
+
+    public Text t;
 
     public bool isTimerSet = false;
 
@@ -45,7 +48,7 @@ public class TimerScript : MonoBehaviour
 
     public void UpdateUI()
     {
-        timerText.text = $"Time: {timer:#.00}";
+        t.text = $"Time: {timer:#.00}";
     }
 
     public void ResetTimer()
