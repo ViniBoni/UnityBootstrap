@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerReset : MonoBehaviour
 {
     public Transform spawnPoint;
+    public PlayerController plr;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,5 +22,7 @@ public class PlayerReset : MonoBehaviour
     public void ResetPlayer(GameObject other)
     {
         other.transform.position = spawnPoint.position;
+        plr.DeleteHook();
+        plr.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }

@@ -6,6 +6,8 @@ public class PlatformTriggerScript : MonoBehaviour
 {
     private bool isPlayerInsideZone = false;
 
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

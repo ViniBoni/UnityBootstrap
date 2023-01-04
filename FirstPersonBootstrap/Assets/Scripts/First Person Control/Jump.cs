@@ -39,18 +39,20 @@ public class Jump : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (jumpButton && Grounded())
-        {
-            jumpButton = false;
-
-            Vector3 spd = rb.velocity;
-            spd.y = 0;
-            rb.velocity = spd;
-
-            rb.AddForce(rb.transform.up * jumpStrength, ForceMode.Impulse);
-        }
+        if (jumpButton && Grounded()) _Jump();
     }
 
+    public void _Jump()
+    {
+
+        jumpButton = false;
+
+        Vector3 spd = rb.velocity;
+        spd.y = 0;
+        rb.velocity = spd;
+
+        rb.AddForce(rb.transform.up * jumpStrength, ForceMode.Impulse);
+    }
 
     bool Grounded()
     {
