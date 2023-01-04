@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
             //If the hook is moving
             if(hookState == "moving")
             {
-                canJump = true;
+
                 Vector3 previousPos = currentHook.position;
                 //Move it forward by x ammount
                 currentHook.position += currentHook.up * hookSpeed;
@@ -212,13 +212,14 @@ public class PlayerController : MonoBehaviour
                     
                 }
 
-
+                if(Vector3.Distance(currentHook.position, transform.position) > 40) DeleteHook();
 
             }
 
             //If hook is hooked
             else if(hookState == "hooked")
             {
+                canJump = true;
 
                 //Change line points
                 lineRenderer.SetPosition(0, hookSpawnPos.position);
@@ -235,12 +236,7 @@ public class PlayerController : MonoBehaviour
                 //If the player jumps
                 if(jumpButton)
                 {
-                    //delete hook parts
-                    Destroy(GameObject.FindGameObjectWithTag("Hook"));
-                    Destroy(GameObject.FindGameObjectWithTag("Line"));
-                    
-                    //change state to inactive
-                    hookState = "inactive";
+                    DeleteHook();
                 }
 
         
