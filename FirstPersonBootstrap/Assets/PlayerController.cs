@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     string hookState = "inactive";
 
     public GameObject hook, line;
-    bool hooked;
+    bool wasHooked;
     Transform currentHook;
 
     LineRenderer lineRenderer;
@@ -74,37 +74,38 @@ public class PlayerController : MonoBehaviour
     {
 
         if(Input.GetKey(KeyCode.R)) SceneManager.LoadScene(0);
+        if(Input.GetKey(KeyCode.P)) Debug.Break();
 
         //Hook stuff
         {
             //If the player clicks
             if(Input.GetButtonDown("Fire1"))
             {
-
+//
                 a.PlayOneShot(clips[0]);
-
+//
                 //Check if raycast hit anything, using layermask
                 bool hit = Physics.Raycast(viewCamera.transform.position, viewCamera.transform.forward, out hookHit, Mathf.Infinity, everythingButPlayer);
-
+//
                 //Delete other hook (if any)
                 Destroy(GameObject.FindGameObjectWithTag("Hook"));
                 Destroy(GameObject.FindGameObjectWithTag("Line"));
-
+//
                 //Summon hook
                 currentHook = Instantiate(hook, hookSpawnPos.position, Quaternion.identity).transform;
                 lineRenderer = Instantiate(line, hookSpawnPos.position, Quaternion.identity).GetComponent<LineRenderer>();
                 lineRenderer.SetPosition(0, Vector3.up * 2000);
                 lineRenderer.SetPosition(1, Vector3.up * 2001);
-
+//
                 //Point it to hookHit point
                 //If raycast didn't hit, point forwards
                 currentHook.up = hit ? hookHit.point - currentHook.transform.position : viewCamera.transform.forward;
                 
-
+//
                 //change state to moving
                 hookState = "moving";
-
-
+//
+//
             }
 
             if(Input.GetButtonDown("Fire2"))
@@ -184,7 +185,7 @@ public class PlayerController : MonoBehaviour
         //If pressing WASD or grounded
         if(Mathf.Abs(Input.GetAxis("Horizontal")) > 0 || Mathf.Abs(Input.GetAxis("Vertical")) > 0 || Grounded())
         {
-            if(!hooked)
+            if(!wasHooked)
             {
 
                 {
@@ -221,9 +222,9 @@ public class PlayerController : MonoBehaviour
 
 
         //Hook freefall
-        if(hooked && hookState == "inactive")
+        if(wasHooked && hookState == "inactive")
         {
-            if(freeFallVel < 15f) hooked = false;
+            if(freeFallVel < 15f) wasHooked = false;
             
             Vector3 velocityNoY = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
@@ -306,7 +307,7 @@ public class PlayerController : MonoBehaviour
             else if(hookState == "hooked")
             {
                 canJump = true;
-                hooked = true;
+                wasHooked = true;
 
                 //Change line points
                 lineRenderer.SetPosition(0, hookSpawnPos.position);
@@ -372,7 +373,7 @@ public class PlayerController : MonoBehaviour
             if(hits[i].gameObject.layer == 6) grounded = true;
         }
 
-        if(grounded) hooked = false;
+        if(grounded) wasHooked = false;
         return grounded;
     }
 }
