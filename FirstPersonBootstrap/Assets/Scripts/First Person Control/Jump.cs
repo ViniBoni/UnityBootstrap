@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,13 +45,7 @@ public class Jump : MonoBehaviour
     public void _Jump()
     {
 
-        jumpButton = false;
 
-        Vector3 spd = rb.velocity;
-        spd.y = 0;
-        rb.velocity = spd;
-
-        rb.AddForce(rb.transform.up * jumpStrength, ForceMode.Impulse);
     }
 
     bool Grounded()
