@@ -12745,7 +12745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &952453697
 AudioSource:
   m_ObjectHideFlags: 0
@@ -32280,7 +32280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: default
-  speed: 12
+  speed: 18
   acceleration: 8
   deceleration: 16
   slowDeceleration: 80

@@ -19151,7 +19151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: default
-  speed: 10
+  speed: 18
   acceleration: 8
   deceleration: 16
   slowDeceleration: 80

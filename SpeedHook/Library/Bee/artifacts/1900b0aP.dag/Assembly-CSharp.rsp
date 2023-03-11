@@ -326,6 +326,7 @@
 "Assets/Scripts/PlatformTriggerScript.cs"
 "Assets/Scripts/PlayerReset.cs"
 "Assets/Scripts/TimerScript.cs"
+"Assets/SetPosition.cs"
 "Assets/TestSortingLayer.cs"
 "Assets/TextCopier.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
