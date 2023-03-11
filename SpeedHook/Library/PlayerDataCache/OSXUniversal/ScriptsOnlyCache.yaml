@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - PlatformTriggerScript
     - PlayerController
     - PlayerReset
+    - ResolutionControl
     - TextCopier
     - TimerScript
     Unity.RenderPipelines.Core.Runtime.dll:
@@ -51,9 +52,11 @@ ScriptsOnlyBuild:
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.ShaderGraph.Editor.dll:
+    - UnityEditor.ShaderGraph.ShaderGraphProjectSettings
     - UnityEditor.ShaderGraph.SubGraphAsset
     Unity.TextMeshPro.dll:
     - TMPro.TMP_ColorGradient
+    - TMPro.TMP_Dropdown
     - TMPro.TMP_FontAsset
     - TMPro.TMP_InputField
     - TMPro.TMP_Settings
@@ -100,6 +103,9 @@ ScriptsOnlyBuild:
     - TMPro.FontAssetCreationSettings
     - TMPro.KerningTable
     - TMPro.TMP_Character
+    - TMPro.TMP_Dropdown/DropdownEvent
+    - TMPro.TMP_Dropdown/OptionData
+    - TMPro.TMP_Dropdown/OptionDataList
     - TMPro.TMP_FontFeatureTable
     - TMPro.TMP_FontWeightPair
     - TMPro.TMP_GlyphAdjustmentRecord
@@ -146,6 +152,9 @@ ScriptsOnlyBuild:
     fullTypeName: ManagerMenu
     methodName: LoadScene
   - assembly: Assembly-CSharp
+    fullTypeName: ResolutionControl
+    methodName: SetFullscreen
+  - assembly: Assembly-CSharp
     fullTypeName: ManagerMenu
     methodName: ExitGame
   - assembly: Assembly-CSharp
@@ -154,6 +163,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: ManagerMenu
     methodName: LoadNameScene
+  - assembly: Assembly-CSharp
+    fullTypeName: ResolutionControl
+    methodName: SetResolution
+  - assembly: Assembly-CSharp
+    fullTypeName: ManagerMenu
+    methodName: GoToMainMenu
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: OnScrollbarClicked
@@ -477,6 +492,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2848}
     - Class: 114
+      Script: {instanceID: 2868}
+    - Class: 114
       Script: {instanceID: 3358}
     - Class: 114
       Script: {instanceID: 3438}
@@ -558,6 +575,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 8022}
     - Class: 114
       Script: {instanceID: 8308}
+    - Class: 114
+      Script: {instanceID: 121158}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -780,7 +799,7 @@ ScriptsOnlyBuild:
     className: WhiteBalance
   - hash:
       serializedVersion: 2
-      Hash: 26cb3445be0dbaeea6767271bf12f829
+      Hash: 7b36896ae46e3716afaee334341668d1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ManagerMenu
@@ -1876,10 +1895,17 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: Benchmark01
+  - hash:
+      serializedVersion: 2
+      Hash: d3e1c6d61ca9ea19e6dcd3cd23239e1f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ResolutionControl
   platform: 2
   scenePathNames:
   - Assets/Main Menu.unity
   - Assets/Level 1.unity
   - Assets/Level 2.unity
   - Assets/Name Selection.unity
-  playerPath: /Users/boni/Downloads/UnityBootstrap/SpeedHook/Builds/1.0.1/macOS.app
+  playerPath: /Users/boni/Downloads/UnityBootstrap/SpeedHook/Builds/Tests/Resolution
+    Changer Test.app

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +26,7 @@ public class Look : MonoBehaviour
 
     void Update()
     {
+        
         Vector2 newMouseDelta = Vector2.Scale(new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")), Vector2.one * sensitivity);
         currentMouseLook += newMouseDelta;
         currentMouseLook.y = Mathf.Clamp(currentMouseLook.y, -89, 89);

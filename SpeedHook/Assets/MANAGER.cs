@@ -20,6 +20,8 @@ public class MANAGER : MonoBehaviour
 
     public int nextLevelID;
 
+    public PlayerController player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +40,9 @@ public class MANAGER : MonoBehaviour
             SceneManager.LoadScene(s.buildIndex);
         }
         if(Input.GetKey(KeyCode.P)) Debug.Break();
-        if(Input.GetKey(KeyCode.Escape) && ended) SceneManager.LoadScene(0);
+        if(Input.GetKey(KeyCode.Escape) && !Application.isEditor) SceneManager.LoadScene(0);
         if(Input.GetKey(KeyCode.Return) && ended) SceneManager.LoadScene(nextLevelID);
+        
     }
 
 
@@ -82,6 +85,8 @@ public class MANAGER : MonoBehaviour
                 int count = 10;
                 int after = rank < 6 ? 0 : rank - 5;
 
+
+
                 LootLockerSDKManager.GetScoreList(leaderboardID, count, after, (response) =>
                 {
                     //If got leaderboard succesfully
@@ -99,14 +104,57 @@ public class MANAGER : MonoBehaviour
                         LootLockerLeaderboardMember[] members = response.items;
 
 
+                        GetMoreMembers();
+                        void GetMoreMembers()
+                        {
+                            if(members.Length < 10) //if in the bottom of the list
+                            {
+                                LootLockerSDKManager.GetMemberRank(leaderboardID, playerID, (response) => //get new list
+                                {
+                                    if (response.statusCode == 200)
+                                    {
+                                        float bestScore = response.score / 1000f;
+                                        bestTime.text = "Best Time: " + bestScore;
+                                        after -= 1;
+
+                                        if(after == -1) 
+                                            return;
+
+                                        LootLockerSDKManager.GetScoreList(leaderboardID, count, after, (response) =>
+                                        {
+                                            //If got leaderboard succesfully
+                                            if (response.statusCode == 200)
+                                            {
+
+                                                members = response.items;
+
+
+                                                if(members.Length < 10) GetMoreMembers();
+                                            }
+                                        });  
+                                    }
+                                });
+                            }
+                        }
+
                         for(int i = 0; i < members.Length; i++)
                         {
+                            //Add rank
                             tempPlayerNames += members[i].rank + ". ";
-                            tempPlayerNames += members[i].player.name;
 
-                            float score = members[i].score / 1000f;
-                            tempPlayerScores += score + "\n";
+                            //Add name
+                            tempPlayerNames += members[i].player.name;
+                            
+                            //Add new
                             tempPlayerNames += "\n";
+
+                            //Get score
+                            float score = members[i].score / 1000f;
+
+                            //Display score
+                            tempPlayerScores += $"{score:#.000}" + "\n";
+
+
                         }
 
                         playerNames.text = tempPlayerNames;
@@ -154,7 +202,7 @@ public class MANAGER : MonoBehaviour
 
     public void EndScreen()
     {
-
+        player.DeleteHook(false);
         endScreen.SetActive(true);
         ended = true;
         StartCoroutine(GetLeaderBoard());

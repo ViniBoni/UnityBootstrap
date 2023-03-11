@@ -12,7 +12,8 @@ public class PlayerReset : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ResetPlayer(other.gameObject);
+            Scene s = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(s.buildIndex);
         }
         else
         {
@@ -20,11 +21,7 @@ public class PlayerReset : MonoBehaviour
         }
     }
 
-    public void ResetPlayer(GameObject other)
+    public void ResetPlayer()
     {
-        Scene s = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(s.buildIndex);
-        plr.DeleteHook();
-        plr.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }

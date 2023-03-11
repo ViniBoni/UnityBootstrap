@@ -317,6 +317,7 @@
 "Assets/ManagerMenu.cs"
 "Assets/NameManager.cs"
 "Assets/PlayerController.cs"
+"Assets/ResolutionControl.cs"
 "Assets/Scripts/First Person Control/Crouch.cs"
 "Assets/Scripts/First Person Control/Jump.cs"
 "Assets/Scripts/First Person Control/Look.cs"
