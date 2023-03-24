@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public int slowDeceleration = 80;
     public Slider speedSlider;
 
-    public float maxSlopeAngle;
     Vector3 groundNormal;
 
     int stoppedFrames;
@@ -38,6 +37,21 @@ public class PlayerController : MonoBehaviour
     public float downGravity;
 
 
+
+    #endregion
+
+    #region Animated Object
+
+    [Space(15)]
+    [Header("Animated Object")]
+    public bool onAnimatedObject;
+    public Transform animatedObject;
+    public Vector3 leavingAnimatedObjectForce;
+    public Vector3 animatedObjectOldPosition;
+    public float animatedObjectMultiplier = 10f;
+    Transform animatedMover;
+
+
     #endregion
 
     #region Hooking
@@ -53,6 +67,8 @@ public class PlayerController : MonoBehaviour
     Transform currentHook;
     bool justUnhooked;
     RaycastHit hookHit;
+    Transform hookedObject;
+    Vector3 hookedObjectOldPosition;
     LineRenderer lineRenderer;
     public Transform hookSpawnPos;
     int everythingButPlayer, ground;
@@ -64,7 +80,7 @@ public class PlayerController : MonoBehaviour
     [Space(15)][Header("Misc")]
     public List<AudioClip> clips = new List<AudioClip>();
     public float sensitivity = 3;
-    AudioSource a;
+    public AudioSource a;
     private Vector2 currentMouseLook;
     Vector3 prevForward;
     Vector3 prevRight;
@@ -74,6 +90,8 @@ public class PlayerController : MonoBehaviour
     public Camera viewCamera;
     public MANAGER manager;
     Rigidbody rb;
+    BoxCollider box;
+    Collider groundImTouching;
 
     #endregion
 
@@ -89,7 +107,8 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
 
         rb = GetComponent<Rigidbody>();
-        col = GetComponent<Collider>();
+        col = GetComponent<CapsuleCollider>();
+        box = GetComponent<BoxCollider>();
         a = GetComponent<AudioSource>();
         state = "default";
         
@@ -98,6 +117,8 @@ public class PlayerController : MonoBehaviour
         everythingButPlayer = ~player;
 
         ground = 1 << 6;
+
+        if(PlayerPrefs.HasKey("Sensitivity")) sensitivity = PlayerPrefs.GetFloat("Sensitivity");
     }
 
     void Update()
@@ -120,6 +141,7 @@ public class PlayerController : MonoBehaviour
                 DeleteHook(false);
 
                 //Play hook shoot audio
+                a.pitch = UnityEngine.Random.Range(.8f, 1.2f);
                 a.PlayOneShot(clips[0]);
 
                 //Check if view raycast hit anything, using layermask
@@ -170,7 +192,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-
         bool WASD = Abs(Input.GetAxisRaw("Horizontal")) > .1f || Abs(Input.GetAxisRaw("Vertical")) > .1f;
 
         //Get the relative forward direction of the camera, ignoring y
@@ -196,7 +217,28 @@ public class PlayerController : MonoBehaviour
 
                 currentMaxFlyingSpeed = maxFlyingSpeed;
                 moveView();
+                
+                if(onAnimatedObject) 
+                {
+                    Vector3 aVel = animatedObject.GetComponent<Rigidbody>().velocity;
+                    leavingAnimatedObjectForce = aVel;
+                    transform.position = animatedMover.position;
+
+                    forward *= Input.GetAxisRaw("Vertical");
+                    right *= Input.GetAxisRaw("Horizontal");
+
+                    //Get the sum of directions
+                    Vector3 dir = forward + right;
+                    dir = dir.normalized;
+
+                    dir.y = 0;
+
+                    animatedMover.position += dir * speed * Time.deltaTime;
+
+                }
+
                 move();
+
 
                 if (Grounded() && jumpButton) jump();
             
@@ -222,13 +264,13 @@ public class PlayerController : MonoBehaviour
                 lineRenderer.SetPosition(0, hookSpawnPos.position);
                 lineRenderer.SetPosition(1, currentHook.position);
 
+                currentHook.parent = hookedObject;
 
                 //Get the direction between the player and the hook
                 hookDir = currentHook.position - transform.position;
 
-
                 //If not moving...
-                if(rb.velocity.magnitude <= 1f) 
+                if(rb.velocity.magnitude <= 1f || Vector3.Distance(currentHook.position, transform.position) < .9f) 
                 {
 
                     //...stop sound after a frame, 
@@ -237,9 +279,10 @@ public class PlayerController : MonoBehaviour
                     {
                         yield return new WaitForFixedUpdate();
 
-                        if(rb.velocity.magnitude <= 1f) 
+                        if(rb.velocity.magnitude <= 1f || Vector3.Distance(currentHook.position, transform.position) < .9f) 
                         {
                             a.Stop();
+                            if(animatedMover != null) animatedMover.position = transform.position;
                         }
                     }
                     
@@ -315,14 +358,19 @@ public class PlayerController : MonoBehaviour
                 else if (Input.GetAxisRaw("Vertical") == 0) //if not pressing W
                 {
                     Vector3 oldVel = rb.velocity;
-                    rb.velocity -= forward * (speed/deceleration);
+                    rb.velocity -= Sign(Vector3.Dot(xzVel, forward)) == 1 ? forward * (speed/deceleration) : -forward * (speed/deceleration);
                     if(rb.velocity.magnitude > oldVel.magnitude) rb.velocity = oldVel;
                 }
                 else if (Input.GetAxisRaw("Vertical") == -1) //if pressing S
                 {
+                    
                     rb.velocity -= forward * (speed/acceleration/3f);
                     if(Vector3.Dot(rb.velocity, forward) <= -speed)
-                        rb.velocity = -forward * speed;
+                    {
+                        Vector3 newDirection = -forward * speed;
+                        newDirection.y = rb.velocity.y;
+                        rb.velocity = newDirection;
+                    }
                 }
                 
                 //In the future, make this more friendly towards the player, maybe only decrease current max flying speed after a couple of frames
@@ -403,6 +451,7 @@ public class PlayerController : MonoBehaviour
                     xzVel = rb.velocity;
                     if(!Grounded()) 
                         xzVel.y = 0;
+
                     xzVel = xzVel.normalized;
 
                     //Get diretion of positive movement
@@ -417,19 +466,14 @@ public class PlayerController : MonoBehaviour
                         stoppedFrames++;
                     }
 
-                    if(stoppedFrames == 2)
-                    {
-                        stoppedPosition = transform.position;
-                    }
-                    else if(stoppedFrames > 2 && Grounded())
-                    {
-                        transform.position = stoppedPosition;
-                    }
                 }
         }
 
         void jump()
         {
+            onAnimatedObject = false;
+            animatedMover = null;
+
             stoppedFrames = 0;
 
             DeleteHook(state == "hooked");
@@ -443,15 +487,18 @@ public class PlayerController : MonoBehaviour
                 spd.y = 0;
                 rb.velocity = spd;
             }
-
+ 
             rb.AddForce(rb.transform.up * jumpStrength, ForceMode.Impulse);
 
+            if(leavingAnimatedObjectForce.y <= 0) 
+                leavingAnimatedObjectForce.y = 1;
+
+            rb.velocity += leavingAnimatedObjectForce;
             
         }
 
         void moveHook()
         {
-            RaycastHit hookHit;
 
             Vector3 oldHookPos = currentHook.position;
 
@@ -466,19 +513,24 @@ public class PlayerController : MonoBehaviour
             //If hook hit something
             if(Physics.Raycast(oldHookPos, currentHook.up, out hookHit, hookSpeed, ground))
             {
-                    //Vertical correction, move the hook a little up/down, depending on the angle of the hit, without this the hook ends up being a little bit inside whatever it touched
-                    Vector3 verticalCorrection = new Vector3(0, hookHit.normal.y * .12f, 0);
 
-                    currentHook.position = hookHit.point + verticalCorrection;
+                hookedObject = hookHit.collider.transform;
+                hookedObjectOldPosition = hookedObject.position;
+                
+                //Vertical correction, move the hook a little up/down, depending on the angle of the hit, without this the hook ends up being a little bit inside whatever it touched
+                Vector3 verticalCorrection = new Vector3(0, hookHit.normal.y * .12f, 0);
 
-                    //Make the hook face whatever it hit
-                    currentHook.up = -hookHit.normal;
+                currentHook.position = hookHit.point + verticalCorrection;
 
-                    //change state to hooked
-                    state = "hooked";
+                //Make the hook face whatever it hit
+                currentHook.up = -hookHit.normal;
 
-                    a.PlayOneShot(clips[1]);
-                    a.PlayOneShot(clips[2]);
+                //change state to hooked
+                state = "hooked";
+
+                a.pitch = UnityEngine.Random.Range(.95f, 1.05f);
+                a.PlayOneShot(clips[1]);
+                a.PlayOneShot(clips[2]);
 
             }
 
@@ -517,7 +569,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnCollisionStay(Collision col)
+    void OnCollisionEnter(Collision col)
     {
         foreach (ContactPoint c in col.contacts)
         {
@@ -527,7 +579,42 @@ public class PlayerController : MonoBehaviour
                 break;
             }
         }
+        if(col.collider.CompareTag("Moving Platform") && groundImTouching == col.collider) 
+        {
+            animatedMover = new GameObject().transform;
+            animatedMover.position = transform.position;
+            animatedMover.parent = col.transform;
 
+            box.enabled = true;
+            onAnimatedObject = true;
+            animatedObject = col.transform;
+            animatedObjectOldPosition = col.transform.position;
+        }   
+    }
+
+    void OnCollisionStay(Collision col)
+    {
+        foreach (ContactPoint c in col.contacts)
+        {
+            if(c.normal != Vector3.up && c.point.y < transform.position.y)
+            {
+                groundNormal = c.normal;
+                break;
+            }
+        } 
+
+    }
+
+    void OnCollisionExit(Collision col)
+    {
+        if(col.collider.CompareTag("Moving Platform")) 
+        {
+            box.enabled = false;
+            //transform.parent = null;
+            onAnimatedObject = false;
+            animatedObject = null;
+            leavingAnimatedObjectForce = Vector3.zero;
+        }
     }
 
 
@@ -573,7 +660,11 @@ public class PlayerController : MonoBehaviour
         Collider[] hits = Physics.OverlapSphere(origin, .5f, groundMask);
 
         //Loop through everything the sphere is touching
-        if(hits.Length > 0) grounded = true;
+        if(hits.Length > 0) 
+        {
+            groundImTouching = hits[0];
+            grounded = true;
+        }
 
         return grounded;
     }

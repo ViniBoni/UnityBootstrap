@@ -1,0 +1,404 @@
+ScriptsOnlyBuild:
+  usedScripts:
+    Assembly-CSharp.dll:
+    - Checkpoint
+    - CheckpointPointer
+    - LetterBoxer
+    - MANAGER
+    - MovingPlatform
+    - Music
+    - PlatformTriggerScript
+    - PlayerController
+    - PlayerReset
+    - SetPosition
+    - TextCopier
+    Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridPaintPaletteClipboard
+    - UnityEditor.Tilemaps.GridPaintPaletteWindow
+    - UnityEditor.Tilemaps.GridPaintingState
+    - UnityEditor.Tilemaps.GridPaletteBrushes
+    - UnityEditor.Tilemaps.GridPalettes
+    - UnityEditor.Tilemaps.PaintableSceneViewGrid
+    - UnityEditor.Tilemaps.SceneViewGridManager
+    - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
+    - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
+    - UnityEditor.Tilemaps.TilemapPrefabStageHelper
+    Unity.2D.Tilemap.Extras.Editor.dll:
+    - UnityEditor.Tilemaps.GameObjectBrush
+    - UnityEditor.Tilemaps.GroupBrush
+    - UnityEditor.Tilemaps.LineBrush
+    - UnityEditor.Tilemaps.RandomBrush
+    Unity.RenderPipelines.Universal.Editor.dll:
+    - UnityEditor.Rendering.Universal.UniversalProjectSettings
+    Unity.RenderPipelines.Universal.Runtime.dll:
+    - UnityEngine.Rendering.Universal.Bloom
+    - UnityEngine.Rendering.Universal.ChannelMixer
+    - UnityEngine.Rendering.Universal.ChromaticAberration
+    - UnityEngine.Rendering.Universal.ColorAdjustments
+    - UnityEngine.Rendering.Universal.ColorCurves
+    - UnityEngine.Rendering.Universal.ColorLookup
+    - UnityEngine.Rendering.Universal.DepthOfField
+    - UnityEngine.Rendering.Universal.FilmGrain
+    - UnityEngine.Rendering.Universal.LensDistortion
+    - UnityEngine.Rendering.Universal.LiftGammaGain
+    - UnityEngine.Rendering.Universal.MotionBlur
+    - UnityEngine.Rendering.Universal.PaniniProjection
+    - UnityEngine.Rendering.Universal.PostProcessData
+    - UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights
+    - UnityEngine.Rendering.Universal.SplitToning
+    - UnityEngine.Rendering.Universal.Tonemapping
+    - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+    - UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+    - UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset
+    - UnityEngine.Rendering.Universal.UniversalRenderPipelineGlobalSettings
+    - UnityEngine.Rendering.Universal.UniversalRendererData
+    - UnityEngine.Rendering.Universal.Vignette
+    - UnityEngine.Rendering.Universal.WhiteBalance
+    - UnityEngine.Rendering.Universal.XRSystemData
+    Unity.Rider.Editor.dll:
+    - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.ShaderGraph.Editor.dll:
+    - UnityEditor.ShaderGraph.ShaderGraphProjectSettings
+    - UnityEditor.ShaderGraph.SubGraphAsset
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TextMeshProUGUI
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimatorControllerTool
+    UnityEditor.TestRunner.dll:
+    - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
+    - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
+    - UnityEngine.UI.Mask
+    - UnityEngine.UI.Outline
+    - UnityEngine.UI.RawImage
+    - UnityEngine.UI.Slider
+    - UnityEngine.UI.Text
+  serializedClasses:
+    Unity.TextMeshPro:
+    - TMPro.FaceInfo_Legacy
+    - TMPro.FontAssetCreationSettings
+    - TMPro.KerningTable
+    - TMPro.TMP_Character
+    - TMPro.TMP_FontFeatureTable
+    - TMPro.TMP_FontWeightPair
+    - TMPro.VertexGradient
+    UnityEngine.CoreModule:
+    - UnityEngine.Events.PersistentCallGroup
+    UnityEngine.TextCoreFontEngineModule:
+    - UnityEngine.TextCore.FaceInfo
+    - UnityEngine.TextCore.Glyph
+    - UnityEngine.TextCore.GlyphMetrics
+    - UnityEngine.TextCore.GlyphRect
+    UnityEngine.UI:
+    - UnityEngine.UI.AnimationTriggers
+    - UnityEngine.UI.ColorBlock
+    - UnityEngine.UI.FontData
+    - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+    - UnityEngine.UI.Navigation
+    - UnityEngine.UI.Slider/SliderEvent
+    - UnityEngine.UI.SpriteState
+  methodsToPreserve: []
+  sceneClasses:
+    Assets/Level 5.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 84
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1752}
+    - Class: 114
+      Script: {instanceID: 1754}
+    - Class: 114
+      Script: {instanceID: 1756}
+    - Class: 114
+      Script: {instanceID: 1758}
+    - Class: 114
+      Script: {instanceID: 2376}
+    - Class: 114
+      Script: {instanceID: 2544}
+    - Class: 114
+      Script: {instanceID: 2898}
+    - Class: 114
+      Script: {instanceID: 3500}
+    - Class: 114
+      Script: {instanceID: 3662}
+    - Class: 114
+      Script: {instanceID: 3798}
+    - Class: 114
+      Script: {instanceID: 4098}
+    - Class: 114
+      Script: {instanceID: 4228}
+    - Class: 114
+      Script: {instanceID: 5196}
+    - Class: 114
+      Script: {instanceID: 5210}
+    - Class: 114
+      Script: {instanceID: 5498}
+    - Class: 114
+      Script: {instanceID: 5574}
+    - Class: 114
+      Script: {instanceID: 5594}
+    - Class: 114
+      Script: {instanceID: 5660}
+    - Class: 114
+      Script: {instanceID: 6250}
+    - Class: 114
+      Script: {instanceID: 6392}
+    - Class: 114
+      Script: {instanceID: 7118}
+    - Class: 114
+      Script: {instanceID: 7792}
+    - Class: 114
+      Script: {instanceID: 7850}
+    - Class: 114
+      Script: {instanceID: 8196}
+    - Class: 114
+      Script: {instanceID: 8672}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 120
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 134
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 137
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
+      Script: {instanceID: 0}
+    - Class: 156049354
+      Script: {instanceID: 0}
+    - Class: 483693784
+      Script: {instanceID: 0}
+    - Class: 1839735485
+      Script: {instanceID: 0}
+  scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: e09e8bebc0fcd32bb8af1287a6b44816
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.EventSystems
+    className: StandaloneInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: a6e561615949734e9f12f9b61661f43e
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: 699619b86d9359741a4f58540298c80b
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Text
+  - hash:
+      serializedVersion: 2
+      Hash: ae83e830e7a90c0aff918c4c2e520825
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerReset
+  - hash:
+      serializedVersion: 2
+      Hash: c1d728126ff1918728036c59106d32b2
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: cc4274b586df3c02688bac01b88bd16c
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.EventSystems
+    className: EventSystem
+  - hash:
+      serializedVersion: 2
+      Hash: 185b457f2d52afc3ef98d0c37d841af5
+    assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
+    namespaceName: UnityEngine.Rendering.Universal
+    className: UniversalAdditionalCameraData
+  - hash:
+      serializedVersion: 2
+      Hash: bb523c216501a4b47fc14e8055949b3b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TextCopier
+  - hash:
+      serializedVersion: 2
+      Hash: f20e9fc1cf83f9662a90221d089fafee
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LetterBoxer
+  - hash:
+      serializedVersion: 2
+      Hash: 8f194c39ca5762cae678b8f6d05c88b5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlatformTriggerScript
+  - hash:
+      serializedVersion: 2
+      Hash: aba7b2852ef61d175dd9602e7723d5e5
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Mask
+  - hash:
+      serializedVersion: 2
+      Hash: 8bdd67f70101e0b422d02b830a35c4a0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerController
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SetPosition
+  - hash:
+      serializedVersion: 2
+      Hash: 21a9c6dbf300fc1f6dc15ca7e2c39a37
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Slider
+  - hash:
+      serializedVersion: 2
+      Hash: 6d548d0371eb3668163b1c80cd207744
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CheckpointPointer
+  - hash:
+      serializedVersion: 2
+      Hash: e78765d93b37fe61ed100bbbc2be3ac6
+    assemblyName: Unity.TextMeshPro.dll
+    namespaceName: TMPro
+    className: TMP_FontAsset
+  - hash:
+      serializedVersion: 2
+      Hash: a1c41d53fb3baac8fcc26137d35a3da4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MANAGER
+  - hash:
+      serializedVersion: 2
+      Hash: a1aa98c78061c6f03a8c124cda576e67
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
+  - hash:
+      serializedVersion: 2
+      Hash: 760787567e1b60d64a3e421ab83ee14a
+    assemblyName: Unity.TextMeshPro.dll
+    namespaceName: TMPro
+    className: TextMeshProUGUI
+  - hash:
+      serializedVersion: 2
+      Hash: caa533b001ae39b864ba8425019e2268
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Outline
+  - hash:
+      serializedVersion: 2
+      Hash: 775cb71fe628cc1abe9811337bf8b34e
+    assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
+    namespaceName: UnityEngine.Rendering.Universal
+    className: UniversalAdditionalLightData
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Music
+  - hash:
+      serializedVersion: 2
+      Hash: 86b1276a50e8bead970552863e2cf49b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MovingPlatform
+  - hash:
+      serializedVersion: 2
+      Hash: aa7bd68ec38655b4f4f7e28c22d93c09
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Checkpoint
+  platform: 5
+  scenePathNames:
+  - Assets/Level 5.unity
+  playerPath: /Users/boni/Downloads/UnityBootstrap/SpeedHook/Assets/AssetBundles/assetbundletest

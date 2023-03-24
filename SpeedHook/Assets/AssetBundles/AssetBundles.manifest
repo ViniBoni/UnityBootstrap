@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 3379156964
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: assetbundletestmacos
+      Dependencies: {}

@@ -1,4 +1,5 @@
 -a="/Users/boni/Downloads/UnityBootstrap/SpeedHook/Library/PlayerScriptAssemblies/Assembly-CSharp.dll"
+-a="/Users/boni/Downloads/UnityBootstrap/SpeedHook/Library/PlayerScriptAssemblies/Unity.2D.Tilemap.Extras.dll"
 -a="/Users/boni/Downloads/UnityBootstrap/SpeedHook/Library/PlayerScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll"
 -a="/Users/boni/Downloads/UnityBootstrap/SpeedHook/Library/PlayerScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll"
 -a="/Users/boni/Downloads/UnityBootstrap/SpeedHook/Library/PlayerScriptAssemblies/Unity.Services.Core.Telemetry.dll"

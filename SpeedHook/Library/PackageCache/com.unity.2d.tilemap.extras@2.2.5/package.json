@@ -1,0 +1,49 @@
+{
+  "name": "com.unity.2d.tilemap.extras",
+  "displayName": "2D Tilemap Extras",
+  "version": "2.2.5",
+  "unity": "2021.1",
+  "description": "2D Tilemap Extras is a package that contains extra scripts for use with 2D Tilemap features in Unity. These include custom Tiles and Brushes for the Tilemap feature.\n\nThe following are included in the package:\nBrushes: GameObject Brush, Group Brush, Line Brush, Random Brush\nTiles: Animated Tile, Rule Tile, Rule Override Tile\nOther: Grid Information, Custom Rules for Rule Tile",
+  "keywords": [
+    "2d"
+  ],
+  "category": "2D",
+  "dependencies": {
+    "com.unity.modules.tilemap": "1.0.0",
+    "com.unity.2d.tilemap": "1.0.0",
+    "com.unity.ugui": "1.0.0",
+    "com.unity.modules.jsonserialize": "1.0.0"
+  },
+  "relatedPackages": {
+    "com.unity.2d.tilemap.extras.tests": "2.2.5"
+  },
+  "samples": [
+    {
+      "displayName": "Waterfall Animated Tile",
+      "description": "An example implementation of an Animated Tile.",
+      "path": "Samples~/WaterfallAnimatedTile"
+    },
+    {
+      "displayName": "Pipe Rule Tile",
+      "description": "An example implementation of a Rule Tile with rules matching four-way orthogonal neighbors.",
+      "path": "Samples~/PipeRuleTile"
+    },
+    {
+      "displayName": "Dungeon Rule Tile",
+      "description": "An example implementation of a Rule Tile with rules matching eight-way orthogonal and diagonal neighbors.",
+      "path": "Samples~/DungeonRuleTile"
+    }
+  ],
+  "_upm": {
+    "changelog": "### Fixed\n- [GameObjectBrush] Fix placement of GameObjects for Hexagon Layouts with Anchor\n- [GameObjectBrush] Align rotation and flip to 2D View in Editor\n- [RandomBrush] Use default color and transform when painting over with RandomBrush"
+  },
+  "upmCi": {
+    "footprint": "257f9be1042ab96f42b7b46238ff655bf8b2e793"
+  },
+  "documentationUrl": "https://docs.unity3d.com/Packages/com.unity.2d.tilemap.extras@2.2/manual/index.html",
+  "repository": {
+    "url": "https://github.com/Unity-Technologies/2d-extras.git",
+    "type": "git",
+    "revision": "0c2229262e21f917bff8c9669b96e2a3147428dd"
+  }
+}

@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+CRC: 641017584
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b1e3755d6b76e914a76a8b0606508a48
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: dd770f72856b5af0e6900b74e95b1963
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Big Man Variant.prefab
+Dependencies: []

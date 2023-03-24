@@ -295,6 +295,7 @@
 -r:"/Applications/Unity/Hub/Editor/2021.3.16f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.XRModule.dll"
 -r:"/Users/boni/Downloads/UnityBootstrap/SpeedHook/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/AOT/Newtonsoft.Json.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/lootlocker.lootlockersdk.runtime.ref.dll"
+-r:"Library/Bee/artifacts/200b0aP.dag/Unity.2D.Tilemap.Extras.ref.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/Unity.Burst.ref.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/Unity.Mathematics.ref.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/Unity.RenderPipeline.Universal.ShaderLibrary.ref.dll"
@@ -309,12 +310,17 @@
 -r:"Library/Bee/artifacts/200b0aP.dag/Unity.TextMeshPro.ref.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/Unity.Timeline.ref.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/UnityEngine.UI.ref.dll"
+"Assets/Checkpoint.cs"
+"Assets/CheckpointPointer.cs"
+"Assets/CustomLevelManager.cs"
 "Assets/Hook.cs"
 "Assets/LetterBoxer/Demo/Scripts/PingPongMove.cs"
 "Assets/LetterBoxer/Demo/Scripts/TrackMouse.cs"
 "Assets/LetterBoxer/LetterBoxer.cs"
 "Assets/MANAGER.cs"
 "Assets/ManagerMenu.cs"
+"Assets/MovingPlatform.cs"
+"Assets/Music.cs"
 "Assets/NameManager.cs"
 "Assets/PlayerController.cs"
 "Assets/ResolutionControl.cs"
@@ -362,6 +368,7 @@
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs"
+"Assets/Window_QuestPointer.cs"
 -langversion:9.0
 
 /deterministic

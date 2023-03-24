@@ -4,23 +4,14 @@ using UnityEngine;
 
 public class PlatformTriggerScript : MonoBehaviour
 {
-    private bool isPlayerInsideZone = false;
-
+    public bool playerInsideZone = false;
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerInsideZone = true;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInsideZone = true;
+            playerInsideZone = true;
         }
     }
 
@@ -28,12 +19,7 @@ public class PlatformTriggerScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerInsideZone = false;
+            playerInsideZone = false;
         }
-    }
-
-    public bool PlayerInsideZone()
-    {
-        return isPlayerInsideZone;
     }
 }

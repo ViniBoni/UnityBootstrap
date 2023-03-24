@@ -5,15 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerReset : MonoBehaviour
 {
-    public Transform spawnPoint;
-    public PlayerController plr;
+    MANAGER manager;
 
+    void Start()
+    {
+        manager = GameObject.Find("Game Manager").GetComponent<MANAGER>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Scene s = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(s.buildIndex);
+            manager.DeathScreen();
         }
         else
         {
@@ -21,7 +23,4 @@ public class PlayerReset : MonoBehaviour
         }
     }
 
-    public void ResetPlayer()
-    {
-    }
 }

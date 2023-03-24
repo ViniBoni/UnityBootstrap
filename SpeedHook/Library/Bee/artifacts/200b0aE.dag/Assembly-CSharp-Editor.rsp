@@ -338,6 +338,9 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/Assembly-CSharp.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/lootlocker.lootlockersdk.runtime.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/PPv2URPConverters.ref.dll"
+-r:"Library/Bee/artifacts/200b0aE.dag/Unity.2D.Tilemap.Editor.ref.dll"
+-r:"Library/Bee/artifacts/200b0aE.dag/Unity.2D.Tilemap.Extras.Editor.ref.dll"
+-r:"Library/Bee/artifacts/200b0aE.dag/Unity.2D.Tilemap.Extras.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.Burst.Editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.Burst.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.Mathematics.Editor.ref.dll"
@@ -367,6 +370,7 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
+"Assets/Editor/CreateAssetBundle.cs"
 "Assets/LetterBoxer/Editor/LetterBoxerEditor.cs"
 -langversion:9.0
 
